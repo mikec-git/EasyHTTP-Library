@@ -19,5 +19,30 @@ easyHTTP.prototype.get = function(url, callback){
 };
 
 // Make an HTTP POST request
+easyHTTP.prototype.post = function(url, data, callback){
+    this.http.open('POST', url, true);
+    this.http.setRequestHeader('Content-type', 'application/json'); //Set content type
+    
+    let self = this;
+    this.http.onload = function(){
+        callback(null, JSON.parse(self.http.responseText));
+    };
+
+    this.http.send(JSON.stringify(data));
+};
+
 // Make an HTTP PUT request
+easyHTTP.prototype.put = function(url, data, callback){
+    this.http.open('POST', url, true);
+    this.http.setRequestHeader('Content-type', 'application/json'); //Set content type
+    
+    let self = this;
+    this.http.onload = function(){
+        callback(null, JSON.parse(self.http.responseText));
+    };
+
+
+    this.http.send(JSON.stringify(data));
+};
+
 // Make an HTTP DELETE request
